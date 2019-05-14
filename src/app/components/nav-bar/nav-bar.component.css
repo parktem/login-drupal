@@ -1,0 +1,9 @@
+.nav .right-first {
+  position: absolute;
+  right: 10px;
+}
+
+.nav .right-second {
+  position: absolute;
+  right: 100px;
+}
