@@ -1,8 +1,10 @@
-<ul class="nav bg-dark">
+<ul class="nav">
   <li class="nav-item right-first">
-    <a class="nav-link" [routerLink]="['/signup']" routerLinkActive="router-link-active">Registrate</a>
+    <a class="nav-link" *ngIf="!isLogged" [routerLink]="['/signup']" routerLinkActive="router-link-active">Registrate</a>
+    <a class="nav-link" *ngIf="isLogged" [routerLink]="['/signup']" routerLinkActive="router-link-active">Salir</a>
   </li>
   <li class="nav-item right-second">
-    <a class="nav-link" [routerLink]="['/signin']" routerLinkActive="router-link-active">Acceder</a>
+    <a class="nav-link" *ngIf="!isLogged" [routerLink]="['/signin']" routerLinkActive="router-link-active">Acceder</a>
+    <a class="nav-link" *ngIf="isLogged" [routerLink]="['/signin']" routerLinkActive="router-link-active">Ver Perfil</a>
   </li>
 </ul>

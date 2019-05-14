@@ -13,8 +13,8 @@ export class SigninComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    this.loginService.isLogged.subscribe(data => {
-      if (data) {
+    this.loginService.isLogged.subscribe(logged => {
+      if (logged) {
           this.router.navigate(['']);
       }
     });
