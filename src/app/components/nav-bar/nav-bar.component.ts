@@ -17,9 +17,13 @@ export class NavBarComponent implements OnInit {
     this.loginService.isLogged.subscribe(logged => {
       if (logged) {
         this.isLogged = true;
-        console.log(this.isLogged);
+      } else {
+        this.isLogged = false;
       }
     });
   }
 
+  onSignOut() {
+    this.loginService.signOut();
+  }
 }

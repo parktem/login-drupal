@@ -1,3 +1,13 @@
+.navbar {
+ background-color:  rgb(154, 174, 4);
+ width: 100%;
+ z-index: 1;
+}
+
+.nav-link {
+  color: white;
+}
+
 .nav .right-first {
   position: absolute;
   right: 10px;

@@ -1,10 +1,12 @@
-<ul class="nav">
-  <li class="nav-item right-first">
-    <a class="nav-link" *ngIf="!isLogged" [routerLink]="['/signup']" routerLinkActive="router-link-active">Registrate</a>
-    <a class="nav-link" *ngIf="isLogged" [routerLink]="['/signup']" routerLinkActive="router-link-active">Salir</a>
-  </li>
-  <li class="nav-item right-second">
-    <a class="nav-link" *ngIf="!isLogged" [routerLink]="['/signin']" routerLinkActive="router-link-active">Acceder</a>
-    <a class="nav-link" *ngIf="isLogged" [routerLink]="['/signin']" routerLinkActive="router-link-active">Ver Perfil</a>
-  </li>
-</ul>
+<nav class="navbar navbar-expand-lg">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!isLogged" [routerLink]="['/signup']" routerLinkActive="router-link-active">Signup</a>
+        <a class="nav-link" *ngIf="isLogged" (click)="onSignOut()">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!isLogged" [routerLink]="['/signin']" routerLinkActive="router-link-active">Signin</a>
+        <a class="nav-link" *ngIf="isLogged">More information</a>
+      </li>
+    </ul>
+</nav>

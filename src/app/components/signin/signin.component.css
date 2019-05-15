@@ -1,5 +1,17 @@
-.form-box {
+form {
+  width: 25%;
   margin: auto;
-  width: 50%;
   padding: 10px;
 }
+
+.form-box button {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.btn {
+  color: white;
+  background-color: rgb(154, 174, 4);
+}
+

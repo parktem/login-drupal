@@ -14,7 +14,7 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   signIn(user: User){
-    firebase.auth().signInWithEmailAndPassword(user.name, user.password)
+    firebase.auth().signInWithEmailAndPassword(user.email, user.password)
     .then(
         response => {
           console.log(firebase.auth().currentUser.getIdToken()),
@@ -27,5 +27,14 @@ export class LoginService {
           );
         }
     );
+  }
+
+  signUp(user: User) {
+    firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+  }
+
+  signOut() {
+    firebase.auth().signOut();
+    this.isLogged.next(false);
   }
 }
