@@ -37,4 +37,8 @@ export class LoginService {
     firebase.auth().signOut();
     this.isLogged.next(false);
   }
+
+  recoveryPassword(user: User) {
+    firebase.auth().sendPasswordResetEmail(user.email);
+  }
 }

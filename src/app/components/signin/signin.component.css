@@ -8,10 +8,17 @@ form {
   position: relative;
   left: 50%;
   transform: translate(-50%);
-}
-
-.btn {
   color: white;
   background-color: rgb(154, 174, 4);
 }
 
+.form-footer{
+  position: relative;
+  height: 100px;
+}
+
+.form-footer a{
+  position: relative;
+  left: -10px;
+  top: 50px;
+}

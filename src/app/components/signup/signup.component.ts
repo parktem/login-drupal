@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { LoginService } from 'src/app/login.service';
 import { Router } from '@angular/router';
 
@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+
+  prueba: string;
 
   signupForm: FormGroup;
 
@@ -21,11 +23,11 @@ export class SignupComponent implements OnInit {
           Validators.email]),
       password: new FormControl(null,
         [Validators.required,
-        Validators.minLength(3)]),
+        Validators.minLength(6)]),
       secondPassword: new FormControl(null,
         [Validators.required,
-          Validators.minLength(3)]),
-    });
+          Validators.minLength(6)]),
+    }, { validators: samePasswords });
   }
 
   ontoad(AC: AbstractControl) {
@@ -38,4 +40,12 @@ export class SignupComponent implements OnInit {
     this.loginService.signUp({email, password});
     this.router.navigate(['']);
   }
+
+}
+
+function samePasswords(form: FormGroup): {[key: string]: any} | null {
+  if (form.get('password').value !== form.get('secondPassword').value) {
+    return { notMatch : 'passwords dont match' };
+  }
+  return null;
 }
