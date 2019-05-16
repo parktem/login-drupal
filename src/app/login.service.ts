@@ -10,27 +10,36 @@ import { Subject } from 'rxjs';
 export class LoginService {
 
   isLogged: Subject<boolean> = new Subject();
+  dataResponded: Subject<boolean> = new Subject();
 
   constructor(private http: HttpClient) { }
 
-  signIn(user: User){
+  signIn(user: User) {
+    this.dataResponded.next(true);
     firebase.auth().signInWithEmailAndPassword(user.email, user.password)
     .then(
-        response => {
+      response => {
           console.log(firebase.auth().currentUser.getIdToken()),
           firebase.auth().currentUser.getIdToken()
           .then(
             (token: string) => {
-              console.log('TOKEN:', token);
               this.isLogged.next(true);
             }
           );
         }
+    ).catch(
+      reponse => console.log('correo erroneo')
     );
   }
 
   signUp(user: User) {
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+    this.dataResponded.next(true);
+    firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+    .then(
+      response => {
+        this.signIn(user);
+      }
+    );
   }
 
   signOut() {

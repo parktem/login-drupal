@@ -1,4 +1,4 @@
-<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar mode="indeterminate" *ngIf="dataReceived"></mat-progress-bar>
 <form [formGroup]="signinForm" (ngSubmit)="onSignIn(form)" #form="ngForm">
   <div class="form-box">
     <div class="form-group">

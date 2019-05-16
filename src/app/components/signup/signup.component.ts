@@ -10,9 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-  prueba: string;
-
   signupForm: FormGroup;
+  dataReceived: boolean = undefined;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -28,6 +27,16 @@ export class SignupComponent implements OnInit {
         [Validators.required,
           Validators.minLength(6)]),
     }, { validators: samePasswords });
+    this.loginService.isLogged.subscribe(logged => {
+      if (logged) {
+        this.router.navigate(['']);
+      }
+    });
+    this.loginService.dataResponded.subscribe(response => {
+      if (response) {
+        this.dataReceived = true;
+      }
+    });
   }
 
   ontoad(AC: AbstractControl) {
@@ -38,7 +47,6 @@ export class SignupComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.loginService.signUp({email, password});
-    this.router.navigate(['']);
   }
 
 }
