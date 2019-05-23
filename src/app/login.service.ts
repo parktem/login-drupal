@@ -28,7 +28,10 @@ export class LoginService {
           );
         }
     ).catch(
-      reponse => console.log('correo erroneo')
+      response => {
+        console.log('correo erroneo'),
+        this.dataResponded.next(false);
+      }
     );
   }
 

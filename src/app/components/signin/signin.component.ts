@@ -32,6 +32,8 @@ export class SigninComponent implements OnInit {
     this.loginService.dataResponded.subscribe(response => {
       if (response) {
         this.dataReceived = true;
+      } else {
+        this.dataReceived = false;
       }
     });
   }
