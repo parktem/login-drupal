@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './models/user.model';
 import * as firebase from 'firebase';
-import { Subject } from 'rxjs';
+import { Subject, Observable, throwError, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,42 +16,27 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   signIn(user: User) {
-    this.dataResponded.next(true);
-    firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-    .then(
-      response => {
-          console.log(firebase.auth().currentUser.getIdToken()),
-          firebase.auth().currentUser.getIdToken()
-          .then(
-            (token: string) => {
-              this.isLogged.next(true);
-            }
-          );
-        }
-    ).catch(
-      response => {
-        console.log('correo erroneo'),
-        this.dataResponded.next(false);
-      }
+    let headersObject = new HttpHeaders();
+    headersObject = headersObject.append('Authorization', 'Basic ' + btoa(user.user + ':' + user.password));
+    return this.http.post('https://drupalcms.centos.local/router_test/test11', {}, {headers : headersObject})
+    .pipe(
+      catchError(val => {
+        console.log(val);
+        return of(val.error.text);
+      })
     );
   }
 
   signUp(user: User) {
-    this.dataResponded.next(true);
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-    .then(
-      response => {
-        this.signIn(user);
-      }
-    );
+    
   }
 
   signOut() {
-    firebase.auth().signOut();
-    this.isLogged.next(false);
+    
   }
 
   recoveryPassword(user: User) {
-    firebase.auth().sendPasswordResetEmail(user.email);
+    
   }
+
 }
