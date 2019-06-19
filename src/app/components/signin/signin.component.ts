@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../login.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-signin',
@@ -12,6 +13,7 @@ export class SigninComponent implements OnInit {
 
   signinForm: FormGroup;
   dataReceived: boolean = undefined;
+  user: User;
 
   constructor(private loginService: LoginService, private router: Router) {}
 
@@ -29,20 +31,20 @@ export class SigninComponent implements OnInit {
       }
     });
     this.loginService.dataResponded.subscribe(response => {
-      if (response) {
-        this.dataReceived = true;
-      } else {
-        this.dataReceived = false;
-      }
+      this.dataReceived = response;
     });
   }
 
     onSignIn(form: NgForm) {
       const user = form.value.user;
       const password = form.value.password;
-      this.loginService.signIn({user, password}).subscribe(
-        data => console.log('data::', data['correo'])
-      );
+      this.user = new User(user, password);
+      this.loginService.signIn(this.user).subscribe( data => {
+        this.user.setEmail(data['email']);
+        this.user.setToken(data['token']);
+        this.user.setRoles(data['roles']);
+        this.loginService.isLogged.next(true);
+      });
     }
 
     onRecoveryPassword(form: NgForm) {

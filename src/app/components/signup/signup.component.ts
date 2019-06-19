@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { LoginService } from 'src/app/login.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +13,7 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
   dataReceived: boolean = undefined;
+  user: User;
 
   constructor(private loginService: LoginService, private router: Router) { }
 
@@ -46,9 +48,10 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp(form: NgForm) {
-    const user = form.value.user;
+    const username = form.value.username;
     const password = form.value.password;
-    this.loginService.signUp({user, password});
+    this.user = new User(username, password);
+    this.loginService.signUp(this.user);
   }
 
 }
