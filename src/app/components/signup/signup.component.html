@@ -2,8 +2,8 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSignUp(form)" #form="ngForm">
   <div class="form-box">
     <div class="form-group">
-      <label>Email</label>
-      <input type="email" class="form-control" formControlName="email" placeholder="Email">
+      <label>User</label>
+      <input type="email" class="form-control" formControlName="user" placeholder="User">
     </div>
     <div class="form-group">
       <label>Password</label>
@@ -12,8 +12,7 @@
     <div class="form-group">
       <label>Repeat Password</label>
       <input type="password" class="form-control" formControlName="secondPassword" #secondPassword placeholder="Password">
-      <span class="help-block">Password don't match</span>
     </div>
-    <button type="submit" [disabled]="!form.valid" class="btn">Iniciar Sesión</button>
+    <button type="submit" [disabled]="!form.valid" class="btn">Sign up</button>
   </div>
 </form>

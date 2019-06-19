@@ -1,7 +1,9 @@
-form {
-  width: 25%;
-  margin: auto;
-  padding: 10px;
+.form-box {
+  position: relative;
+  width: 30%;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .form-box button {

@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = new FormGroup({
-      email: new FormControl(null,
+      user: new FormControl(null,
         [Validators.required,
           Validators.email]),
       password: new FormControl(null,
@@ -35,6 +35,8 @@ export class SignupComponent implements OnInit {
     this.loginService.dataResponded.subscribe(response => {
       if (response) {
         this.dataReceived = true;
+      } else {
+        this.dataReceived = false;
       }
     });
   }
@@ -44,9 +46,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSignUp(form: NgForm) {
-    const email = form.value.email;
+    const user = form.value.user;
     const password = form.value.password;
-    this.loginService.signUp({email, password});
+    this.loginService.signUp({user, password});
   }
 
 }

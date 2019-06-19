@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './models/user.model';
-import * as firebase from 'firebase';
 import { Subject, Observable, throwError, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -27,16 +26,10 @@ export class LoginService {
     );
   }
 
-  signUp(user: User) {
-    
-  }
+  signUp(user: User) {}
 
-  signOut() {
-    
-  }
+  signOut() {}
 
-  recoveryPassword(user: User) {
-    
-  }
+  recoveryPassword(user: User) {}
 
 }

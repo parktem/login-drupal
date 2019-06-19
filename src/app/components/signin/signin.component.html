@@ -1,17 +1,17 @@
 <mat-progress-bar mode="indeterminate" *ngIf="dataReceived"></mat-progress-bar>
-<form [formGroup]="signinForm" (ngSubmit)="onSignIn(form)" #form="ngForm">
-  <div class="form-box">
-    <div class="form-group">
-      <label>Email</label>
-      <input type="email" class="form-control" formControlName="email" placeholder="Email">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control"  formControlName="password" placeholder="Password">
-    </div>
-    <div class="form-footer">
-      <button type="submit" [disabled]="!form.valid" class="btn">Enter</button>
-      <a (click)="onRecoveryPassword(form)">¿Has olvidado la contraseña?</a>
-    </div>
-  </div>
-</form>
+<div class="form-box">
+  <form [formGroup]="signinForm" (ngSubmit)="onSignIn(form)" #form="ngForm">
+      <div class="form-group">
+        <label>User</label>
+        <input type="email" class="form-control" formControlName="user" placeholder="User">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control"  formControlName="password" placeholder="Password">
+      </div>
+      <div class="form-footer">
+        <button type="submit" [disabled]="!form.valid" class="btn">Sign in</button>
+        <a (click)="onRecoveryPassword(form)">Recovery Password</a>
+      </div>
+  </form>
+</div>

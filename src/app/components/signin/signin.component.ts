@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../login.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
@@ -18,9 +17,9 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      email: new FormControl(null,
-        [Validators.required,
-          Validators.email]),
+      user: new FormControl(null,
+        [Validators.required
+        ]),
           password: new FormControl(null,
             [Validators.required])
           });
@@ -39,15 +38,15 @@ export class SigninComponent implements OnInit {
   }
 
     onSignIn(form: NgForm) {
-      const email = form.value.email;
+      const user = form.value.user;
       const password = form.value.password;
-      this.loginService.signIn({email, password});
+      this.loginService.signIn({user, password}).subscribe(
+        data => console.log('data::', data['correo'])
+      );
     }
 
     onRecoveryPassword(form: NgForm) {
-      const email = form.value.email;
-      const password = form.value.password;
-      this.loginService.recoveryPassword({email, password});
-  }
+
+    }
 
 }

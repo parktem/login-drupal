@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
-import * as firebase from 'firebase';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'login-drupal';
+
+  constructor(private loginService: LoginService) {}
+
 }
 
-firebase.initializeApp({
-  apiKey: "AIzaSyAnkyH8peI52bz62pIkPK61io4a3OvlGis",
-  authDomain: "paginapeliculas-d7a99.firebaseapp.com"
-});
+

@@ -1,7 +1,9 @@
-form {
-  width: 25%;
-  margin: auto;
-  padding: 10px;
+.form-box {
+  position: relative;
+  width: 30%;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .form-box button {
@@ -18,7 +20,13 @@ form {
 }
 
 .form-footer a{
-  position: relative;
-  left: -10px;
+  position: absolute;
+  left: 50%;
   top: 50px;
+  transform: translate(-50%);
+}
+
+.form-footer a:hover {
+  cursor: pointer;
+  color: rgb(154, 174, 4);
 }

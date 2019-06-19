@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "basic-auth": "registry:npm/basic-auth#1.0.4+20160811001003"
+  }
+}
