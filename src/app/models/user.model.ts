@@ -4,6 +4,7 @@ export class User {
   private token: string;
   private email: string;
   private roles: string[];
+  private administrator: boolean = false;
 
   constructor(username: string, password: string) {
     this.username = username;
@@ -28,6 +29,15 @@ export class User {
 
   setRoles(roles: string[]) {
     this.roles = roles;
+    this.roles.forEach( rol => {
+      if (rol === 'Administrator') {
+        this.administrator = true;
+      }
+    });
+  }
+
+  setAdministrator(isAdministrator: boolean) {
+    this.administrator = isAdministrator;
   }
 
   getUsername(): string {
@@ -49,4 +59,9 @@ export class User {
   getRoles(): string[] {
     return this.roles;
   }
+
+  isAdministrator() {
+    return this.isAdministrator;
+  }
+
 }

@@ -44,6 +44,7 @@ export class SigninComponent implements OnInit {
         this.user.setToken(data['token']);
         this.user.setRoles(data['roles']);
         this.loginService.isLogged.next(true);
+        this.loginService.currentUser = this.user;
       });
     }
 

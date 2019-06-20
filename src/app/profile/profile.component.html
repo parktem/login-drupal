@@ -1,0 +1,13 @@
+<div class="container" style="text-align: center;">
+  <div class="box-profile">
+    <h3 class="pb-4 mb-4 font-italic" style="border-bottom: 1px solid #9aae04ab; ">
+        Perfil del Usuario
+    </h3>
+    <div class="container" style="border: 2px double #9aae04;border-radius: 5px">
+      <p><b>Username: </b>{{user.getUsername()}}</p>
+      <p><b>Email: </b>{{user.getEmail()}}</p>
+      <p><b>Roles: </b><span *ngFor="let rol of user.getRoles()">  {{rol}} / </span></p>
+      <p *ngIf="!user.isAdministrator()"><b>Email: </b>{{user.getToken()}}</p>
+    </div>
+  </div>
+</div>
