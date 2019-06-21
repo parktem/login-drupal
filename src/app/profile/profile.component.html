@@ -7,7 +7,7 @@
       <p><b>Username: </b>{{user.getUsername()}}</p>
       <p><b>Email: </b>{{user.getEmail()}}</p>
       <p><b>Roles: </b><span *ngFor="let rol of user.getRoles()">  {{rol}} / </span></p>
-      <p *ngIf="!user.isAdministrator()"><b>Email: </b>{{user.getToken()}}</p>
+      <p *ngIf="user.isAdministrator()"><b>Token: </b>{{user.getToken()}}</p>
     </div>
   </div>
 </div>

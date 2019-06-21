@@ -48,8 +48,6 @@ export class SigninComponent implements OnInit {
       });
     }
 
-    onRecoveryPassword(form: NgForm) {
-
-    }
+    onRecoveryPassword(form: NgForm) {}
 
 }

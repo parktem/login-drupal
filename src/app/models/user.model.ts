@@ -30,10 +30,14 @@ export class User {
   setRoles(roles: string[]) {
     this.roles = roles;
     this.roles.forEach( rol => {
-      if (rol === 'Administrator') {
+      if (rol === 'administrator') {
+        console.log('es administrador');
         this.administrator = true;
+      } else{
+        console.log('no es administrador');
       }
     });
+    console.log(this.isAdministrator());
   }
 
   setAdministrator(isAdministrator: boolean) {
@@ -61,7 +65,7 @@ export class User {
   }
 
   isAdministrator() {
-    return this.isAdministrator;
+    return this.administrator;
   }
 
 }

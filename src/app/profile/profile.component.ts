@@ -12,15 +12,14 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   isAdministrator = false;
-  constructor(private loginService: LoginService, private router: Router) {}
 
-  ngOnInit() {
-    console.log('llega');
+  constructor(private loginService: LoginService, private router: Router) {
     this.user = this.loginService.currentUser;
     if (this.user === undefined) {
       this.router.navigate(['']);
     }
-    console.log(this.user);
   }
+
+  ngOnInit() {}
 
 }

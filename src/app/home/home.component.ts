@@ -40,18 +40,16 @@ export class HomeComponent implements OnInit {
     const password = form.value.password;
     this.user = new User(user, password);
     this.loginService.signIn(this.user).subscribe( data => {
-      console.log(data);
       this.user.setEmail(data['correo']);
       this.user.setToken(data['token']);
       this.user.setRoles(data['roles']);
       this.loginService.currentUser = this.user;
       this.loginService.isLogged.next(true);
+      //this.loginService.delete(this.user);
     },
     err => console.log());
   }
 
-  onRecoveryPassword(form: NgForm) {
-
-  }
+  onRecoveryPassword(form: NgForm) {}
 
 }

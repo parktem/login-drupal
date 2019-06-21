@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {InputTextModule} from 'primeng/inputtext';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +31,8 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatProgressBarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
