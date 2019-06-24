@@ -1,16 +1,25 @@
 .bd-placeholder-img {
-font-size: 1.125rem;
-text-anchor: middle;
--webkit-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media (min-width: 768px) {
-.bd-placeholder-img-lg {
-    font-size: 3.5rem;
+  .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+  }
 }
+
+@-webkit-keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
 }
 
 html,
@@ -18,6 +27,15 @@ body {
   height: 100%;
 }
 
+.alert {
+  position: absolute !important;
+  padding: 0.75rem 5rem !important;
+  -webkit-animation: fadein 0.5s;
+  width: 92%;
+  margin-top: 15px;
+  left: 50%;
+  transform: translate(-50%);
+}
 
 
 body {
