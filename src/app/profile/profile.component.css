@@ -2,3 +2,13 @@
     position: relative;
     top: 20px;
 }
+
+.data-box {
+    width: 80%;
+}
+
+.data-item {
+    position: relative;
+    left: 1%;
+    width: 100%;
+}

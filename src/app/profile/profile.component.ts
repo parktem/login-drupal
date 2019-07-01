@@ -12,12 +12,15 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   isAdministrator = false;
+  display = false;
 
   constructor(private loginService: LoginService, private router: Router) {
-    this.user = this.loginService.currentUser;
-    if (this.user === undefined) {
-      this.router.navigate(['']);
-    }
+    this.loginService.getProfile().subscribe( data => {
+      this.user = new User();
+      const roles: string = data[0]['roles_target_id'];
+      this.user.setRoles(roles.split(', '));
+      this.display = true;
+    });
   }
 
   ngOnInit() {}

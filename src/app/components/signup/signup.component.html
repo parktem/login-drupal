@@ -1,18 +1,10 @@
-<mat-progress-bar mode="indeterminate" *ngIf="dataReceived"></mat-progress-bar>
-<form [formGroup]="signupForm" (ngSubmit)="onSignUp(form)" #form="ngForm">
-  <div class="form-box">
-    <div class="form-group">
-      <label>User</label>
-      <input type="email" class="form-control" formControlName="user" placeholder="User">
-    </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" class="form-control" formControlName="password" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label>Repeat Password</label>
-      <input type="password" class="form-control" formControlName="secondPassword" #secondPassword placeholder="Password">
-    </div>
-    <button type="submit" [disabled]="!form.valid" class="btn">Sign up</button>
-  </div>
-</form>
+<div class="form-box">
+  <form class="form-signin" [formGroup]="signupForm" (ngSubmit)="onSignUp(form)" #form="ngForm">
+    <img class="icon" src="./assets/icons8-accede-redondeado-derecho-96.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <input type="email" class="form-control email" formControlName="user" placeholder="Email" autofocus="">
+    <input type="name" class="form-control password"  formControlName="password" placeholder="Password">
+    <input type="password" class="form-control repeat-password"  formControlName="secondPassword" placeholder="Repeat password">
+    <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid">Sign in</button>
+  </form>
+</div>

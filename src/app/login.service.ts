@@ -17,9 +17,20 @@ export class LoginService {
   signIn(user: User) {
     let headersObject = new HttpHeaders();
     headersObject = headersObject.append('Authorization', 'Basic ' + btoa(user.getUsername() + ':' + user.getPassword()));
-    return this.http.post('https://drupalcms.centos.local/router_test/test11', {}, {headers : headersObject});
+    return this.http.post('https://drupalcms.centos.local/user/login?_format=json', {
+      name: user.getUsername(),
+      pass: user.getPassword()
+      } , {});
   }
-  
+
+  getProfile() {
+    let currentUser: {token: string, uid: string};
+    currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    let headersObject = new HttpHeaders();
+    headersObject = headersObject.append('Authorization', 'Bearer ' + currentUser.token);
+    return this.http.get('http://drupalcms.centos.local/perfil/usuario/' + currentUser.uid, {headers: headersObject});
+  }
+
   delete(user: User) {
     let headersObject = new HttpHeaders();
     headersObject = headersObject.append('Authorization', 'Bearer ' + user.getToken());
@@ -29,9 +40,12 @@ export class LoginService {
     });
   }
 
-  signUp(user: User) {}
+  signUp(user: User) {
+    console.log(user);
+  }
 
   signOut() {
+    localStorage.removeItem('currentUser');
     this.isLogged.next(false);
     this.currentUser = undefined;
   }

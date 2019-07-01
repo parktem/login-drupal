@@ -5,8 +5,9 @@ export class User {
   private email: string;
   private roles: string[];
   private administrator: boolean = false;
+  private uid: string;
 
-  constructor(username: string, password: string) {
+  constructor(username?: string, password?: string) {
     this.username = username;
     this.password = password;
   }
@@ -28,20 +29,24 @@ export class User {
   }
 
   setRoles(roles: string[]) {
+    if (roles === undefined) {
+      return;
+    }
     this.roles = roles;
+    console.log(this.roles);
     this.roles.forEach( rol => {
-      if (rol === 'administrator') {
-        console.log('es administrador');
+      if (rol.toLowerCase() === 'administrator') {
         this.administrator = true;
-      } else{
-        console.log('no es administrador');
       }
     });
-    console.log(this.isAdministrator());
   }
 
   setAdministrator(isAdministrator: boolean) {
     this.administrator = isAdministrator;
+  }
+
+  setUid(uid: string) {
+    this.uid = uid;
   }
 
   getUsername(): string {
@@ -66,6 +71,10 @@ export class User {
 
   isAdministrator() {
     return this.administrator;
+  }
+
+  getUid() {
+    return this.uid;
   }
 
 }

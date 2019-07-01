@@ -1,33 +1,98 @@
-.form-box {
-  position: relative;
-  width: 30%;
-  top: 50px;
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.alert {
+  position: absolute !important;
+  padding: 0.75rem 5rem !important;
+  -webkit-animation: fadein 0.5s;
+  width: 92%;
+  margin-top: 15px;
   left: 50%;
   transform: translate(-50%);
 }
 
-.form-box button {
+
+body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.icon {
   position: relative;
   left: 50%;
   transform: translate(-50%);
-  color: white;
-  background-color: rgb(154, 174, 4);
 }
 
-.form-footer{
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  transform: translate(0, 20%);
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
   position: relative;
-  height: 100px;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
 }
 
-.form-footer a{
-  position: absolute;
-  left: 50%;
-  top: 50px;
-  transform: translate(-50%);
+.form-signin h1 {
+    position: relative;
+    left: 50%;
+    transform: translate(-28%);
 }
 
-.form-footer a:hover {
-  cursor: pointer;
-  color: rgb(154, 174, 4);
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin button {
+  background-color: #9aae04;
+  border-color: #9aae04;
+}

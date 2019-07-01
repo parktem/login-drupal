@@ -1,29 +1,12 @@
-<mat-progress-bar mode="indeterminate" *ngIf="dataReceived"></mat-progress-bar>
 <div class="form-box">
-  <form [formGroup]="signinForm" (ngSubmit)="onSignIn(form)" #form="ngForm">
-      <div class="form-group">
-        <label>User</label>
-        <input type="email" class="form-control" formControlName="user" placeholder="User">
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" class="form-control"  formControlName="password" placeholder="Password">
-      </div>
-      <div class="form-footer">
-        <button type="submit" [disabled]="!form.valid" class="btn">Sign in</button>
-        <a class="list-group-item list-group-item-action" style="text-align: center;" (click)="onRecoveryPassword(form)">Recovery Password</a>
-      </div>
+  <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="onSignIn(form)" #form="ngForm">
+    <img class="icon" src="./assets/icons8-accede-redondeado-derecho-96.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <input type="email" class="form-control" formControlName="user" placeholder="User" autofocus="">
+    <input type="password" class="form-control"  formControlName="password" placeholder="Password">
+    <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid">Sign in</button>
+    <div *ngIf="incorrectPassword" style="text-align: center" class="alert alert-danger" role="alert">
+      Incorrect user!
+    </div>
   </form>
-</div>
-<br><br><br>
-<div class="container" style="text-align: center;">
-  <h3 class="pb-4 mb-4 font-italic" style="border-bottom: 1px solid #038caeb4; ">
-  Perfil del Usuario
-  </h3>
-  <div class="container" style="border: 2px double #038bae;border-radius: 5px">
-    <p><b>Usuario</b>: sdfhsdhgf</p>
-    <p><b>Email</b>: sdfhsdhgf</p>
-    <p><b>Token</b>: sdfhsdhgf</p>
-    <p><b>Roles</b>: sdfhsdhgf | gfgdsfsdgi</p>
-  </div>
 </div>

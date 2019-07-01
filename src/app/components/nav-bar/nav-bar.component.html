@@ -9,6 +9,9 @@
         <a class="nav-link" *ngIf="isLogged" [routerLink]="['']" (click)="onSignOut()">Logout</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" *ngIf="isLogged" [routerLink]="['profile']">Profile</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" *ngIf="!isLogged" [routerLink]="['']" routerLinkActive="router-link-active">Signin</a>
       </li>
     </ul>
