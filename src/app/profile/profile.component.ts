@@ -23,6 +23,13 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loginService.isAuth().subscribe( (data: any) => {
+      if (data === false) {
+        localStorage.clear();
+        this.router.navigate(['/']);
+      }
+    });
+  }
 
 }

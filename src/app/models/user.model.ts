@@ -33,7 +33,6 @@ export class User {
       return;
     }
     this.roles = roles;
-    console.log(this.roles);
     this.roles.forEach( rol => {
       if (rol.toLowerCase() === 'administrator') {
         this.administrator = true;

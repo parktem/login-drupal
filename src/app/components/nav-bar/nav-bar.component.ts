@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LoginService } from 'src/app/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,21 +9,13 @@ import { LoginService } from 'src/app/login.service';
 })
 export class NavBarComponent implements OnInit {
 
-  isLogged = false;
+  @Input() isLogged: boolean;
 
-  constructor(private loginService: LoginService) { }
-
-  ngOnInit() {
-    console.log(this.isLogged);
-    this.loginService.isLogged.subscribe(logged => {
-      if (logged) {
-        this.isLogged = true;
-      } else {
-        this.isLogged = false;
-      }
-    });
+  constructor(private loginService: LoginService, private router: Router) {
   }
-
+  
+  ngOnInit() {}
+  
   onSignOut() {
     this.loginService.signOut();
   }

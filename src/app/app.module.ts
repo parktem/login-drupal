@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ import { HomeComponent } from './home/home.component';
     ReactiveFormsModule,
     MatProgressBarModule,
     BrowserAnimationsModule,
-    ProgressBarModule
+    ProgressBarModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
