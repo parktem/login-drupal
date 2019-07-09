@@ -6,6 +6,7 @@ export class User {
   private roles: string[];
   private administrator: boolean = false;
   private uid: string;
+  private csrfToken;
 
   constructor(username?: string, password?: string) {
     this.username = username;
@@ -48,6 +49,10 @@ export class User {
     this.uid = uid;
   }
 
+  setCsrfToken(csrfToken: string) {
+    this.csrfToken = csrfToken;
+  }
+
   getUsername(): string {
     return this.username;
   }
@@ -74,6 +79,10 @@ export class User {
 
   getUid() {
     return this.uid;
+  }
+
+  getCsrfToken() {
+    return this.csrfToken;
   }
 
 }

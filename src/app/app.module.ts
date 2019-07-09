@@ -14,6 +14,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
+import { CreateContentComponent } from './components/create-content/create-content.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HomeComponent } from './components/home/home.component';
     SigninComponent,
     ProfileComponent,
     HomeComponent,
+    CreateContentComponent,
   ],
   imports: [
     FormsModule,

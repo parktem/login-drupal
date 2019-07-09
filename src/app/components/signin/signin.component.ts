@@ -23,9 +23,9 @@ export class SigninComponent implements OnInit {
       user: new FormControl(null,
         [Validators.required
         ]),
-          password: new FormControl(null,
-            [Validators.required])
-          });
+      password: new FormControl(null,
+        [Validators.required])
+    });
     this.loginService.isLogged.subscribe(logged => {
       if (logged) {
         this.router.navigate(['/home']);
@@ -46,7 +46,10 @@ export class SigninComponent implements OnInit {
       this.user.setUid(data['current_user']['uid']);
       this.user.setRoles(data['current_user']['roles']);
       this.user.setToken(data['access_token']);
-      localStorage.setItem('currentUser', JSON.stringify({token: this.user.getToken(), uid: this.user.getUid()}));
+      this.user.setCsrfToken(data['csrf_token']);
+      localStorage.setItem('currentUser', JSON.stringify(
+        {token: this.user.getToken(), uid: this.user.getUid(), csrf_token: this.user.getCsrfToken()})
+      );
       this.loginService.currentUser = this.user;
       this.router.navigate(['/home']);
     },
