@@ -2,7 +2,7 @@
   <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="onCreateContent(form)" #form="ngForm">
     <input type="text" class="form-control" formControlName="title" placeholder="Title" autofocus="">
     <input type="text" class="form-control" formControlName="body" placeholder="Body">
-    <input type="text" class="form-control" formControlName="type" placeholder="Type">
+    <input type="checkbox" class="form-control" formControlName="status">
     <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid">Sign in</button>
   </form>
 </div>

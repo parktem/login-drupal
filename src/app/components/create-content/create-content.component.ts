@@ -20,7 +20,7 @@ export class CreateContentComponent implements OnInit {
       ]),
       body: new FormControl(null,
         [Validators.required]),
-      type: new FormControl(null,
+      status: new FormControl(null,
         [Validators.required])
     });
   }
@@ -28,8 +28,8 @@ export class CreateContentComponent implements OnInit {
   onCreateContent(form: NgForm){
     const title = form.value.title;
     const body = form.value.body;
-    const type = form.value.type;
-    this.contentService.createContent({title, body, type});
+    const status = form.value.status;
+    this.contentService.createContent({title, body, status});
   }
 
 }

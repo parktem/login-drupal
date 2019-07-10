@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private loginService: LoginService, private router: Router) {
     this.loginService.getProfile().subscribe( data => {
+      console.log(data);
       this.user = new User();
       const roles: string = data[0]['roles_target_id'];
       this.user.setRoles(roles.split(', '));

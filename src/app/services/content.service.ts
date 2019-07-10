@@ -18,16 +18,19 @@ export class ContentService {
     headersObject = headersObject.append('Authorization', 'Bearer ' + currentUser.token);
     const body = {
       'title': [{
-          'value': content.title
+        'value': content.title
       }],
       'body': [{
-          'value': content.body,
-          'format': 'full_html'
+        'value': content.body,
+        'format': 'full_html'
       }],
       'type': [{
-          'target_id': content.type
+        'target_id': 'article'
+      }],
+      'status': [{
+        'value': content.status
       }]
-      }
+    };
     this.http.post('https://drupalcms.centos.local/entity/node?_format=json', body, {headers: headersObject}).subscribe( data => {
       console.log(data);
     });

@@ -31,6 +31,7 @@ export class LoginService {
     currentUser = JSON.parse(localStorage.getItem('currentUser'));
     let headersObject = new HttpHeaders();
     headersObject = headersObject.append('Authorization', 'Bearer ' + currentUser.token);
+    console.log('headerObject::', headersObject);
     return this.http.get('http://drupalcms.centos.local/perfil/usuario/' + currentUser.uid, {headers: headersObject});
   }
 
