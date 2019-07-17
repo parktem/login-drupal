@@ -7,3 +7,16 @@
     color: white;
     z-index: 1;
 }
+
+.box-articles {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 5%;
+}
+
+.article {
+    border: 1px grey solid;
+    margin-top: 4%;
+    padding: 12px;
+}

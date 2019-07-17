@@ -40,8 +40,10 @@ export class SigninComponent implements OnInit {
     this.incorrectPassword = false;
     const user = form.value.user;
     const password = form.value.password;
+    console.log(form);
     this.user = new User(user, password);
     this.loginService.signIn(this.user).subscribe( data => {
+      console.log(data);
       this.user.setusername(data['current_user']['name']);
       this.user.setUid(data['current_user']['uid']);
       this.user.setRoles(data['current_user']['roles']);

@@ -35,4 +35,9 @@ export class ContentService {
       console.log(data);
     });
   }
+
+  getArticles() {
+    return this.http.get('http://drupalcms.centos.local/api/node/article');
+  }
+
 }
