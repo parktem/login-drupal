@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Subject, of, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { MODE_APP, URL_MODE } from '../properties/mode.properties';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,12 @@ export class LoginService {
 
   signIn(user: User) {
     let headersObject = new HttpHeaders();
-    headersObject = headersObject.append('Content-Type', 'application/json');
-    headersObject = headersObject.append('Authorization', 'Basic ' + btoa(user.getUsername() + ':' + user.getPassword()));
-    console.log('headersObject::', headersObject);
-    return this.http.post('https://drupalcms.centos.local/user/login?_format=json', {
+    headersObject = headersObject.append('Access-Control-Allow-Origin', '*');
+    headersObject = headersObject.append('Access-Control-Allow-Methods', 'GET, POST, DELETE');
+    return this.http.post(URL_MODE + '/user/login', {
       name: user.getUsername(),
       pass: user.getPassword()
-      } , {});
+      } , {headers: headersObject});
   }
 
   getProfile() {
@@ -32,24 +32,7 @@ export class LoginService {
     let headersObject = new HttpHeaders();
     headersObject = headersObject.append('Authorization', 'Bearer ' + currentUser.token);
     console.log('headerObject::', headersObject);
-    return this.http.get('http://drupalcms.centos.local/perfil/usuario/' + currentUser.uid, {headers: headersObject});
-  }
-
-  delete(user: User) {
-    let headersObject = new HttpHeaders();
-    headersObject = headersObject.append('Authorization', 'Bearer ' + user.getToken());
-    return this.http.delete('http://drupalcms.centos.local/api/users/' + 5, {headers: headersObject}).subscribe(data => {
-    });
-  }
-
-  signUp(user: User) {
-
-  }
-
-  signOut() {
-    localStorage.removeItem('currentUser');
-    this.isLogged.next(false);
-    this.currentUser = undefined;
+    return this.http.get(URL_MODE + '/perfil/usuario/' + currentUser.uid, {headers: headersObject});
   }
 
   isAuth() {
@@ -58,7 +41,7 @@ export class LoginService {
     let headersObject = new HttpHeaders();
     if (currentUser !== null) {
       headersObject = headersObject.append('Authorization', 'Bearer ' + currentUser.token);
-      return this.http.get('http://drupalcms.centos.local/session/auth/' + currentUser.uid, {headers: headersObject}).pipe(
+      return this.http.get(URL_MODE + '/session/auth/' + currentUser.uid, {headers: headersObject}).pipe(
         catchError(err => {
           this.isLogged.next(false);
           return of(false);

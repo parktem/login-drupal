@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Content } from '../models/content.model';
+import { URL_MODE } from '../properties/mode.properties';
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +32,13 @@ export class ContentService {
         'value': content.status
       }]
     };
-    this.http.post('https://drupalcms.centos.local/entity/node?_format=json', body, {headers: headersObject}).subscribe( data => {
+    this.http.post(URL_MODE + '/entity/node?_format=json', body, {headers: headersObject}).subscribe( data => {
       console.log(data);
     });
   }
 
   getArticles() {
-    return this.http.get('http://drupalcms.centos.local/api/node/article');
+    return this.http.get(URL_MODE + '/api/node/article');
   }
 
 }

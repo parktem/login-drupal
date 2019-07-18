@@ -52,7 +52,7 @@ export class SignupComponent implements OnInit {
     const username = form.value.user;
     const password = form.value.password;
     this.user = new User(username, password);
-    this.loginService.signUp(this.user);
+    //this.loginService.signUp(this.user);
   }
 
 }
