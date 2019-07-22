@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Subject, of, Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { MODE_APP, URL_MODE } from '../properties/mode.properties';
+import { URL_MODE } from '../properties/mode.properties';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class LoginService {
     let headersObject = new HttpHeaders();
     headersObject = headersObject.append('Access-Control-Allow-Origin', '*');
     headersObject = headersObject.append('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-    return this.http.post(URL_MODE + '/user/login', {
+    return this.http.post(URL_MODE + '/user/login?_format=json', {
       name: user.getUsername(),
       pass: user.getPassword()
       } , {headers: headersObject});

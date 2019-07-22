@@ -17,6 +17,6 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {}
 
   onSignOut() {
-    this.loginService.signOut();
+   // this.loginService.signOut();
   }
 }
