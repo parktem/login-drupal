@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ProgressBarModule} from 'primeng/progressbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,7 +37,9 @@ import { CreateContentComponent } from './components/create-content/create-conte
     MatProgressBarModule,
     BrowserAnimationsModule,
     ProgressBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    DialogModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

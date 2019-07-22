@@ -12,6 +12,7 @@ import { Article } from 'src/app/models/article.model';
 export class HomeComponent implements OnInit {
 
   articles: Article[] = [];
+  display = false;
 
   constructor(private loginService: LoginService, private contentService: ContentService, private router: Router) {
     this.getArticles();
