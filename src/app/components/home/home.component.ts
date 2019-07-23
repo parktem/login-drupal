@@ -10,7 +10,8 @@ import { Article } from 'src/app/models/article.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  //<a href="/node/4" hreflang="en">Alejandro pruebalo</a>
+  //Thu, 07/04/2019 - 09:31
   articles: Article[] = [];
   displayEditDialog = false;
   displayDeleteDialog = false;
