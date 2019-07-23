@@ -12,7 +12,11 @@ import { Article } from 'src/app/models/article.model';
 export class HomeComponent implements OnInit {
 
   articles: Article[] = [];
-  display = false;
+  displayEditDialog = false;
+  displayDeleteDialog = false;
+  titleChanged: string;
+  bodyChanged: string;
+  idSelected: string;
 
   constructor(private loginService: LoginService, private contentService: ContentService, private router: Router) {
     this.getArticles();
@@ -20,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.isAuth().subscribe( (data: any) => {
+      console.log(data);
       if (data === false) {
         localStorage.clear();
         this.router.navigate(['/']);
@@ -29,17 +34,33 @@ export class HomeComponent implements OnInit {
 
   getArticles() {
     this.contentService.getArticles().subscribe( data => {
-      Object.values(data['data']).forEach( article => {
+      console.log(data);
+      Object.values(data).forEach( article => {
         const articleFromApi = new Article();
-        articleFromApi.body = article['attributes']['body']['value'];
-        articleFromApi.title = article['attributes']['title'];
-        articleFromApi.id = article['id'];
-        articleFromApi.created = article['attributes']['created'];
-        articleFromApi.changed = article['attributes']['changed'];
-        articleFromApi.status = article['attributes']['status'];
+        articleFromApi.body = article['body'];
+        articleFromApi.title = article['title'];
+        articleFromApi.id = article['nid'];
+        articleFromApi.created = article['created'];
+        articleFromApi.changed = article['changed'];
+        articleFromApi.status = article['status'];
         this.articles.push(articleFromApi);
       });
     });
+  }
+
+  openDialog(title: string, body: string, id: string){
+    this.displayEditDialog = true;
+    this.titleChanged = title;
+    this.bodyChanged = body;
+    this.idSelected = id;
+  }
+
+  onEdit() {
+    this.contentService.editContent({title : this.titleChanged, body: this.bodyChanged, status: true}, this.idSelected);
+  }
+
+  onDelete() {
+    this.contentService.deleteContent({title : this.titleChanged, body: this.bodyChanged, status: true}, this.idSelected);
   }
 
 }

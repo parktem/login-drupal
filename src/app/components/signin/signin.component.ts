@@ -49,9 +49,12 @@ export class SigninComponent implements OnInit {
       this.user.setRoles(data['current_user']['roles']);
       this.user.setToken(data['access_token']);
       this.user.setCsrfToken(data['csrf_token']);
+      console.log(this.user);
       localStorage.setItem('currentUser', JSON.stringify(
-        {token: this.user.getToken(), uid: this.user.getUid(), csrf_token: this.user.getCsrfToken()})
-      );
+        {token: this.user.getToken(), uid: this.user.getUid(), csrf_token: this.user.getCsrfToken(), roles: this.user.getRoles(),
+          admin: this.user.isAdministrator()
+        }
+      ));
       this.loginService.currentUser = this.user;
       this.router.navigate(['/home']);
     },

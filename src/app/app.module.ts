@@ -8,6 +8,8 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import {EditorModule} from 'primeng/editor';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +41,9 @@ import { CreateContentComponent } from './components/create-content/create-conte
     ProgressBarModule,
     MatSidenavModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    EditorModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]
