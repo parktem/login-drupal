@@ -23,18 +23,25 @@ export class HomeComponent implements OnInit {
     this.getArticles();
   }
 
+  lorem(): string {
+    return 'Lorem ipsum dolor sit amet adipiscing bibendum sem orci tempus aliquet gravida, orci amet iaculis aptent blandit quam accumsan donec in facilisis, cursus ante curabitur aliquet condimentum tincidunt facilisis non cubilia lorem et pretium aliquam phasellus ipsum metus quisque auctor tristique donec nibh, praesent congue ultricies aenean ornare ligula sagittis proin sed vestibulum purus tempus aenean neque aliquam curae vivamus purus egestas ligula tincidunt nullam';
+  }
+
   ngOnInit() {
-    this.loginService.isAuth().subscribe( (data: any) => {
-      console.log(data);
+    this.articles.push({title: 'Title 1', body: this.lorem(), created: '12', changed: '12', status: true, id: '1',})
+    this.articles.push({title: 'Title 2', body: this.lorem(), created: '13', changed: '13', status: true, id: '2',})
+    this.articles.push({title: 'Title 3', body: this.lorem(), created: '14', changed: '14', status: true, id: '3',})
+    /*this.loginService.isAuth().subscribe( (data: any) => {
+    console.log(data);
       if (data === false) {
         localStorage.clear();
         this.router.navigate(['/']);
       }
-    });
+    });*/
   }
 
   getArticles() {
-    this.contentService.getArticles().subscribe( data => {
+    /*this.contentService.getArticles().subscribe( data => {
       console.log(data);
       Object.values(data).forEach( article => {
         const articleFromApi = new Article();
@@ -46,7 +53,7 @@ export class HomeComponent implements OnInit {
         articleFromApi.status = article['status'];
         this.articles.push(articleFromApi);
       });
-    });
+    });*/
   }
 
   openDialog(title: string, body: string, id: string){

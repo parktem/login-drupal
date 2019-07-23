@@ -1,19 +1,20 @@
 <button [routerLink]="['/create-content']" class="btn btn-create-content">Create content</button>
+
 <div class="box-articles">
-  <div *ngFor="let article of articles" class="article" >
-    <div class="article-title"><b>{{article.title}}</b></div>
-    <div class="article-body">{{article.body}}</div>
-    <div class="article-action">
-      <div class="article-action-Edit" (click)="openDialog(article.title, article.body, article.id)">Edit</div>
-      <div class="article-action-delete" (click)="displayDeleteDialog = true; idSelected = article.id">Delete</div>
-    </div>
-  </div>
+  <p-accordion *ngFor="let article of articles">
+    <p-accordionTab header="{{article.title}}" [selected]="true">
+       {{article.body}}
+        <div class="article-action-Edit" (click)="openDialog(article.title, article.body, article.id)">Edit</div>
+        <div class="article-action-delete" (click)="displayDeleteDialog = true; idSelected = article.id">Delete</div>
+      </p-accordionTab>
+  </p-accordion>
 </div>
-<p-dialog header="Edit Article" [(visible)]="displayEditDialog" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70" 
+
+<p-dialog header="Edit Article" [(visible)]="displayEditDialog" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70"
   [maximizable]="true" [baseZIndex]="10000">
   <div class="box-edit">
     <span class="ui-float-label">
-        <input id="float-input" type="text" size="30" pInputText [(ngModel)]="titleChanged"> 
+        <input id="float-input" type="text" size="30" pInputText [(ngModel)]="titleChanged">
         <label for="float-input">Title</label>
     </span>
     <p-editor [(ngModel)]="bodyChanged" [style]="{'height':'320px'}">
@@ -31,7 +32,7 @@
       <button type="button" pButton (click)="displayEditDialog=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
-<p-dialog header="Delete Article" [(visible)]="displayDeleteDialog" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70" 
+<p-dialog header="Delete Article" [(visible)]="displayDeleteDialog" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70"
   [maximizable]="true" [baseZIndex]="10000">
   Are you sure you want to delete this article?
   <p-footer>
