@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Content } from '../models/content.model';
 import { URL_MODE } from '../properties/mode.properties';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

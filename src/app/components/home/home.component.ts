@@ -3,6 +3,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { ContentService } from 'src/app/services/content.service';
 import { Article } from 'src/app/models/article.model';
+import Utils from 'src/app/utils/utils';
+import { AppService } from 'src/app/services/app.service';
 
 @Component({
   selector: 'app-home',
@@ -10,8 +12,6 @@ import { Article } from 'src/app/models/article.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  //<a href="/node/4" hreflang="en">Alejandro pruebalo</a>
-  //Thu, 07/04/2019 - 09:31
   articles: Article[] = [];
   displayEditDialog = false;
   displayDeleteDialog = false;
@@ -19,41 +19,38 @@ export class HomeComponent implements OnInit {
   bodyChanged: string;
   idSelected: string;
 
-  constructor(private loginService: LoginService, private contentService: ContentService, private router: Router) {
-    this.getArticles();
-  }
-
-  lorem(): string {
-    return 'Lorem ipsum dolor sit amet adipiscing bibendum sem orci tempus aliquet gravida, orci amet iaculis aptent blandit quam accumsan donec in facilisis, cursus ante curabitur aliquet condimentum tincidunt facilisis non cubilia lorem et pretium aliquam phasellus ipsum metus quisque auctor tristique donec nibh, praesent congue ultricies aenean ornare ligula sagittis proin sed vestibulum purus tempus aenean neque aliquam curae vivamus purus egestas ligula tincidunt nullam';
+  constructor(private loginService: LoginService, private appService: AppService,
+              private contentService: ContentService, private router: Router) {
+      this.getArticles();
   }
 
   ngOnInit() {
-    this.articles.push({title: 'Title 1', body: this.lorem(), created: '12', changed: '12', status: true, id: '1',})
-    this.articles.push({title: 'Title 2', body: this.lorem(), created: '13', changed: '13', status: true, id: '2',})
-    this.articles.push({title: 'Title 3', body: this.lorem(), created: '14', changed: '14', status: true, id: '3',})
-    /*this.loginService.isAuth().subscribe( (data: any) => {
-    console.log(data);
+    this.loginService.isAuth().subscribe( (data: any) => {
+      // debugger;
       if (data === false) {
+        console.log('false');
         localStorage.clear();
         this.router.navigate(['/']);
       }
-    });*/
+    });
   }
 
   getArticles() {
-    /*this.contentService.getArticles().subscribe( data => {
-      console.log(data);
+    this.router.events.subscribe( e => this.appService.suscribed.next(true));
+    this.contentService.getArticles().subscribe( data => {
       Object.values(data).forEach( article => {
         const articleFromApi = new Article();
-        articleFromApi.body = article['body'];
-        articleFromApi.title = article['title'];
+        articleFromApi.body = article.body;
+        articleFromApi.title = article.title;
+        articleFromApi.title = Utils.formatTitle(articleFromApi.title);
         articleFromApi.id = article['nid'];
         articleFromApi.created = article['created'];
         articleFromApi.changed = article['changed'];
         articleFromApi.status = article['status'];
         this.articles.push(articleFromApi);
       });
-    });*/
+    });
+    this.appService.suscribed.next(false);
   }
 
   openDialog(title: string, body: string, id: string){

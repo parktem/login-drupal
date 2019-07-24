@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { AccordionModule } from 'primeng/accordion';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,7 +46,8 @@ import { CreateContentComponent } from './components/create-content/create-conte
     ButtonModule,
     EditorModule,
     InputTextModule,
-    AccordionModule
+    AccordionModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

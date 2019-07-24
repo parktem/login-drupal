@@ -3,7 +3,7 @@
 <div class="box-articles">
   <p-accordion *ngFor="let article of articles">
     <p-accordionTab header="{{article.title}}" [selected]="true">
-       {{article.body}}
+      {{article.body}}
         <div class="article-action-Edit" (click)="openDialog(article.title, article.body, article.id)">Edit</div>
         <div class="article-action-delete" (click)="displayDeleteDialog = true; idSelected = article.id">Delete</div>
       </p-accordionTab>

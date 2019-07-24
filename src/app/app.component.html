@@ -1,2 +1,5 @@
 <app-nav-bar [isLogged]="isLogged"></app-nav-bar>
-<router-outlet></router-outlet>
+<p-progressSpinner *ngIf="displaySpinner" [style]="{width: '200px', height: '200px'}" class="spinner"></p-progressSpinner>
+<div *ngIf="!displaySpinner">
+    <router-outlet></router-outlet>
+</div>
