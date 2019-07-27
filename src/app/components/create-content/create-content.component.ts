@@ -29,6 +29,7 @@ export class CreateContentComponent implements OnInit {
     const title = form.value.title;
     const body = form.value.body;
     const status = form.value.status;
+    this.contentService.article.next();
     this.contentService.createContent({title, body, status});
   }
 

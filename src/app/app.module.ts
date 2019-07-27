@@ -12,6 +12,7 @@ import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CookieService } from "angular2-cookie/services/cookies.service";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -49,7 +50,7 @@ import { CreateContentComponent } from './components/create-content/create-conte
     AccordionModule,
     ProgressSpinnerModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

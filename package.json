@@ -24,6 +24,7 @@
     "@angular/router": "~7.2.0",
     "@ngx-loading-bar/http-client": "^4.2.0",
     "angular-progress-bar": "^1.0.9",
+    "angular2-cookie": "^1.2.6",
     "basic-authorization-header": "^0.2.7",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",

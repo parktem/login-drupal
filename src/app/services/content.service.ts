@@ -3,11 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Content } from '../models/content.model';
 import { URL_MODE } from '../properties/mode.properties';
 import { delay } from 'rxjs/operators';
+import { Article } from '../models/article.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContentService {
+
+  article: Subject<Article[]> = new Subject();
 
   constructor(private http: HttpClient) { }
 

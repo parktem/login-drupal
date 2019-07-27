@@ -23,7 +23,7 @@ export class LoginService {
     return this.http.post(URL_MODE + '/user/login?_format=json', {
       name: user.getUsername(),
       pass: user.getPassword()
-      } , {headers: headersObject});
+      } , {headers: headersObject, observe: 'response'});
   }
 
   getProfile() {

@@ -5,6 +5,8 @@ import { ContentService } from 'src/app/services/content.service';
 import { Article } from 'src/app/models/article.model';
 import Utils from 'src/app/utils/utils';
 import { AppService } from 'src/app/services/app.service';
+import { CookieService } from "angular2-cookie/core";
+
 
 @Component({
   selector: 'app-home',
@@ -15,16 +17,23 @@ export class HomeComponent implements OnInit {
   articles: Article[] = [];
   displayEditDialog = false;
   displayDeleteDialog = false;
+  displayCreateDialog = false;
   titleChanged: string;
   bodyChanged: string;
   idSelected: string;
 
   constructor(private loginService: LoginService, private appService: AppService,
-              private contentService: ContentService, private router: Router) {
+              private contentService: ContentService, private router: Router, private cookieService: CookieService) {
       this.getArticles();
+      console.log(this.cookieService.get('SSESSacb3351bc1b9468f6cb1a99299820b2c'));
   }
 
   ngOnInit() {
+
+    this.contentService.article.subscribe( (data: Article[]) => {
+      this.articles = data;
+    });
+
     this.loginService.isAuth().subscribe( (data: any) => {
       // debugger;
       if (data === false) {
@@ -36,7 +45,6 @@ export class HomeComponent implements OnInit {
   }
 
   getArticles() {
-    this.router.events.subscribe( e => this.appService.suscribed.next(true));
     this.contentService.getArticles().subscribe( data => {
       Object.values(data).forEach( article => {
         const articleFromApi = new Article();
@@ -50,7 +58,6 @@ export class HomeComponent implements OnInit {
         this.articles.push(articleFromApi);
       });
     });
-    this.appService.suscribed.next(false);
   }
 
   openDialog(title: string, body: string, id: string){
@@ -65,6 +72,8 @@ export class HomeComponent implements OnInit {
   }
 
   onDelete() {
+    this.articles = this.articles.filter(a => a.id !== this.idSelected);
+    this.contentService.article.next(this.articles);
     this.contentService.deleteContent({title : this.titleChanged, body: this.bodyChanged, status: true}, this.idSelected);
   }
 
