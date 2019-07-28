@@ -30,12 +30,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.contentService.article.subscribe( (data: Article[]) => {
-      this.articles = data;
+    this.contentService.articleUpload.subscribe( (data: Article) => {
+      this.articles.unshift(data);
     });
 
     this.loginService.isAuth().subscribe( (data: any) => {
-      // debugger;
       if (data === false) {
         console.log('false');
         localStorage.clear();
@@ -73,7 +72,6 @@ export class HomeComponent implements OnInit {
 
   onDelete() {
     this.articles = this.articles.filter(a => a.id !== this.idSelected);
-    this.contentService.article.next(this.articles);
     this.contentService.deleteContent({title : this.titleChanged, body: this.bodyChanged, status: true}, this.idSelected);
   }
 
