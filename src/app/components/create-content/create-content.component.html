@@ -1,8 +1,25 @@
-<div class="form-box">
-  <form class="form-signin" [formGroup]="signinForm" (ngSubmit)="onCreateContent(form)" #form="ngForm">
-    <input type="text" class="form-control" formControlName="title" placeholder="Title" autofocus="">
-    <input type="text" class="form-control" formControlName="body" placeholder="Body">
-    <input type="checkbox" class="form-control" formControlName="status">
-    <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!form.valid">Sign in</button>
-  </form>
-</div>
+<p-dialog header="Create Article" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70"
+  [maximizable]="true" [baseZIndex]="10000">
+  <div class="box-create">
+    <span class="ui-float-label">
+        <input [(ngModel)]="titleChanged" id="float-input" type="text" size="30" pInputText>
+        <label for="float-input">Title</label>
+    </span>
+  <p-editor [bounds]="null" [(ngModel)]="bodyChanged" [style]="{'height':'320px'}">
+    <p-header>
+        <span class="ql-formats">
+            <button class="ql-bold" aria-label="Bold"></button>
+            <button class="ql-italic" aria-label="Italic"></button>
+            <button class="ql-underline" aria-label="Underline"></button>
+        </span>
+    </p-header>
+  </p-editor>
+  </div>
+  <div class="checkbox-box">
+      <p-checkbox [(ngModel)]="statusChanged" binary="true"></p-checkbox> <b>   Publish?</b>
+  </div>
+  <p-footer>
+    <button type="button" pButton icon="pi pi-check" label="Save" (click)="onCreateContent()"></button>
+    <button type="button" pButton (click)="changeDisplay(false)" label="Cancel" class="ui-button-secondary"></button>
+  </p-footer>
+</p-dialog>

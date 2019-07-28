@@ -1,14 +1,29 @@
-<button (click)="displayCreateDialog = true" class="btn btn-create-content">Create article</button>
+<!-- <button (click)="displayCreateDialog = true" class="btn btn-create-content">Create article</button> -->
+
+<div class="toolbar">
+  <p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <button pButton class="btn-create-content" (click)="displayCreateDialog = true" type="button" label="Create Article" icon="pi pi-plus"></button>
+        <i class="ui-toolbar-separator pi pi-bars" style="vertical-align: middle"></i>
+    </div>
+    <div class="ui-toolbar-group-right">
+        <input class="input-search" type="text" pInputText (keyup)="filterByTitle()" [(ngModel)]="searchValue"/>
+        <button pButton type="button" icon="pi pi-search"></button>
+        <p-calendar [inputStyle]="{'display': 'none'}" [showIcon]="true"></p-calendar>
+      </div>
+  </p-toolbar>
+</div>
 
 <div class="box-articles">
   <p-accordion *ngFor="let article of articles">
-    <p-accordionTab header="{{article.title}}" [selected]="true">
+    <p-accordionTab *ngIf="article.title !== 'undefined'" header="{{article.title}}" [selected]="true">
       {{article.body}}
       <div class="box-buttons">
-        <button pButton type="button" label="Edit" (click)="openDialog(article.title, article.body, article.id)" class="button-edit ui-button-raised ui-button-warning"></button>
+        <div class="date-created"><i><b>Created: </b>{{article.created}}</i></div>
+        <button pButton type="button" label="Edit" (click)="openDialog(article.title, article.body, article.id, article.status)" class="button-edit ui-button-raised ui-button-warning"></button>
         <button pButton type="button" label="Delete" (click)="displayDeleteDialog = true; idSelected = article.id" class="button-delete ui-button-raised ui-button-danger"></button>
       </div>
-      </p-accordionTab>
+    </p-accordionTab>
   </p-accordion>
 </div>
 
@@ -29,6 +44,9 @@
       </p-header>
     </p-editor>
   </div>
+  <div class="checkbox-box">
+      <p-checkbox [(ngModel)]="statusChanged" binary="true" [value]="statusChanged"></p-checkbox> <b>   Publish?</b>
+  </div>
   <p-footer>
       <button type="button" pButton icon="pi pi-check" (click)="displayEditDialog=false" label="Send" (click)="onEdit()"></button>
       <button type="button" pButton (click)="displayEditDialog=false" label="Cancel" class="ui-button-secondary"></button>
@@ -39,15 +57,10 @@
   Are you sure you want to delete this article?
   <p-footer>
       <button type="button" pButton icon="pi pi-times" (click)="displayDeleteDialog=false; onDelete()" label="Delete" class="ui-button-danger"></button>
-      <button type="button" pButton (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
+      <button type="button" pButton (click)="displayDeleteDialog=false" label="Cancel" class="ui-button-secondary"></button>
   </p-footer>
 </p-dialog>
 
-<p-dialog header="Create Article" [(visible)]="displayCreateDialog" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '200px'}" [minY]="70"
-  [maximizable]="true" [baseZIndex]="10000">
+<div *ngIf="displayCreateDialog">
   <app-create-content></app-create-content>
-  <p-footer>
-      <button type="button" pButton icon="pi pi-times" (click)="displayCreateDialog = false; onDelete()" label="Delete" class="ui-button-danger"></button>
-      <button type="button" pButton (click)="display=false" label="Cancel" class="ui-button-secondary"></button>
-  </p-footer>
-</p-dialog>
+</div>

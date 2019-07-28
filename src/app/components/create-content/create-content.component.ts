@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { ContentService } from 'src/app/services/content.service';
+import Utils from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-create-content',
@@ -9,28 +9,30 @@ import { ContentService } from 'src/app/services/content.service';
 })
 export class CreateContentComponent implements OnInit {
 
-  signinForm: FormGroup;
+  display = true;
+  bodyChanged: string;
+  titleChanged: string;
+  statusChanged = false;
 
   constructor(private contentService: ContentService) { }
 
-  ngOnInit() {
-    this.signinForm = new FormGroup({
-      title: new FormControl(null,
-      [Validators.required
-      ]),
-      body: new FormControl(null,
-        [Validators.required]),
-      status: new FormControl(null,
-        [Validators.required])
+  ngOnInit() {}
+
+  onCreateContent() {
+    const title = this.titleChanged;
+    const body = Utils.formatBody(this.bodyChanged);
+    console.log(this.statusChanged);
+    this.contentService.createContent({title, body, status: this.statusChanged}).subscribe( data => {
+      console.log(data);
+      const id = data['nid'][0]['value'];
+      const created = data['created'][0]['value'];
+      this.contentService.articleUpload.next({title, body, status: this.statusChanged, id, created});
+      this.contentService.displayCreateDialog.next(false);
     });
   }
 
-  onCreateContent(form: NgForm){
-    const title = form.value.title;
-    const body = form.value.body;
-    const status = form.value.status;
-    this.contentService.articleUpload.next({title, body, status});
-    this.contentService.createContent({title, body, status});
+  changeDisplay(status: boolean) {
+    this.contentService.displayCreateDialog.next(status);
   }
 
 }

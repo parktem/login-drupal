@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { Subject, of, Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Subject, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { URL_MODE } from '../properties/mode.properties';
 
 @Injectable({
@@ -17,13 +17,10 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   signIn(user: User) {
-    let headersObject = new HttpHeaders();
-    headersObject = headersObject.append('Access-Control-Allow-Origin', '*');
-    headersObject = headersObject.append('Access-Control-Allow-Methods', 'GET, POST, DELETE');
     return this.http.post(URL_MODE + '/user/login?_format=json', {
       name: user.getUsername(),
       pass: user.getPassword()
-      } , {headers: headersObject, observe: 'response'});
+      } , {observe: 'response'});
   }
 
   getProfile() {

@@ -12,7 +12,10 @@ import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { AccordionModule } from 'primeng/accordion';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { CookieService } from "angular2-cookie/services/cookies.service";
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ToolbarModule } from 'primeng/toolbar';
+import { CalendarModule } from 'primeng/calendar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,7 +51,10 @@ import { CreateContentComponent } from './components/create-content/create-conte
     EditorModule,
     InputTextModule,
     AccordionModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    CheckboxModule,
+    ToolbarModule,
+    CalendarModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

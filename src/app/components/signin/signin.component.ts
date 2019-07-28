@@ -52,7 +52,7 @@ export class SigninComponent implements OnInit {
         this.user.setUid(data['body']['current_user']['uid']);
         this.user.setRoles(data['body']['current_user']['roles']);
         this.user.setToken(data['body']['access_token']);
-        this.user.setCsrfToken(data['body']['csrf_token']); 
+        this.user.setCsrfToken(data['body']['csrf_token']);
         localStorage.setItem('currentUser', JSON.stringify(
           {token: this.user.getToken(), uid: this.user.getUid(), csrf_token: this.user.getCsrfToken(), roles: this.user.getRoles(),
             admin: this.user.isAdministrator()
@@ -62,7 +62,10 @@ export class SigninComponent implements OnInit {
         this.appService.suscribed.next(false);
         this.router.navigate(['/home']);
       },
-      (err) => this.incorrectPassword = true
+      (err) => {
+        this.incorrectPassword = true;
+        this.appService.suscribed.next(false);
+      }
     );
   }
 

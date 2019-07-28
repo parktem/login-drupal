@@ -1,0 +1,14 @@
+.box-create {
+    padding: 15px;
+}
+
+.box-create p-editor {
+    padding: 5px;
+}
+
+.checkbox-box {
+    position: relative;
+    top: 0px;
+    left: 15px;
+    width: 200px;
+}

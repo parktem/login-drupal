@@ -20,7 +20,13 @@ export class AppComponent implements OnInit{
     this.appService.suscribed.subscribe( (data: boolean) => {
       this.displaySpinner = data;
     });
-
+    this.loginService.isAuth().subscribe( (data: any) => {
+      if (data === false) {
+        console.log('false');
+        localStorage.clear();
+        this.router.navigate(['/']);
+      }
+    });
     this.router.events.subscribe((val) => {
       if (val instanceof NavigationEnd) {
         this.isLogged = val.urlAfterRedirects !== '/' ? true : false;
